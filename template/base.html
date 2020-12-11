@@ -5,9 +5,30 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
 
     <body> <header>
-    <h1><a href="{% url 'home' %}">Django blog</a></h1> </header>
+
+    <div class="nav-left">
+    <h1><a href="{% url 'home' %}">Django blog</a></h1> 
+    </div>
+
+    <div class="nav-rigth">    
+        <h1><a href="{% url 'post_new' %}"> New Blog</a></h1> 
+    </div>
+    </header>
+
+ {% if user.is_authenticated %}
+
+ <p>Hi {{user.username}}</p>
+ <a href="{% url 'logout'%}"> Log out</a>
+
+{%else%}
+<p>You are not logged in</p>
+ <a href="{% url 'login' %}">Log in</a>
+
+{%endif%}
+
     <div>
-    {% block content %} {% endblock content %}
+    {% block content %} 
+    {% endblock content %}
     </div> </body>
     </html>
     
